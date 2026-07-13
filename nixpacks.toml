@@ -1,0 +1,7 @@
+[variables]
+NIXPACKS_PHP_ROOT_DIR = "/app/public"
+SESSION_DRIVER = "cookie"
+APP_NAME = "Gondar Tourism"
+APP_ENV = "production"
+APP_DEBUG = "false"
+APP_KEY = "base64:Cwh72orBi7MYAZpLox+hN0HpqQEJBBbaPS1y/jqpaRQ="
