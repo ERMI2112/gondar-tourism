@@ -1,52 +1,69 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.app')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@section('title', 'Register — Gondar Tourism')
+
+@section('content')
+<div style="min-height: 100vh; display:flex; align-items:center; background: radial-gradient(ellipse at top left, rgba(201,168,76,0.06) 0%, transparent 60%); padding: 3rem 0;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="text-center mb-4">
+                    <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;">
+                        <i class="bi bi-person-plus-fill" style="color:var(--dark);"></i>
+                    </div>
+                    <h2 style="font-family:'Playfair Display',serif; color:var(--text-light); font-size:1.6rem; margin-bottom:0.25rem;">Create an Account</h2>
+                    <p style="color:var(--text-muted); font-size:0.875rem;">Join Gondar Smart Tourism System</p>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-body form-premium">
+                        @if($errors->any())
+                        <div class="alert-premium mb-3" style="background:rgba(231,76,60,0.08);border-color:rgba(231,76,60,0.25);color:#E74C3C;">
+                            <ul class="mb-0 ps-3">
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Your first and last name" required autofocus>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="you@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="e.g. +251 911 00 0000">
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Min 8 chars" required>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Repeat password" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-gold w-100 justify-content-center" style="border:none; cursor:pointer; margin-top:1rem;">
+                                <i class="bi bi-check-circle"></i> Complete Registration
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <p class="text-center mt-3" style="font-size:0.85rem; color:var(--text-muted);">
+                    Already have an account?
+                    <a href="{{ route('login') }}" style="color:var(--gold); text-decoration:none;">Sign in instead</a>
+                </p>
+            </div>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</div>
+@endsection
