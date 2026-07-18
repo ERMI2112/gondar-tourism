@@ -13,6 +13,16 @@
         <div class="admin-page-title">Dashboard</div>
         <div class="admin-page-subtitle">Welcome back, {{ auth()->user()->name }}. Here's what's happening today.</div>
 
+        @if($stats['pending_guides'] > 0)
+        <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center justify-content-between p-3 mb-4" style="background-color: #FFF4D6; border-left: 4px solid #F39C12 !important; border-radius: 8px;">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-exclamation-triangle-fill text-warning fs-5"></i>
+                <div class="text-dark" style="font-size: 0.9rem;">You have <strong>{{ $stats['pending_guides'] }}</strong> pending tour guide application(s) awaiting review.</div>
+            </div>
+            <a href="{{ route('admin.guides.index') }}" class="btn btn-sm btn-gondar-gold py-1 px-3" style="font-size: 0.8rem;">Review Applications</a>
+        </div>
+        @endif
+
         {{-- STAT CARDS --}}
         <div class="row g-3 mb-4">
             <div class="col-6 col-lg-2">

@@ -1,3 +1,8 @@
+@php
+    $pendingGuidesCount = \App\Models\Guide::where('approval_status', 'pending')->count();
+    $pendingRequestsCount = \App\Models\GuideRequest::where('status', 'pending')->count();
+@endphp
+
 <aside class="admin-sidebar d-none d-md-block">
     <div class="px-4 pb-3 mb-2" style="border-bottom: 1px solid rgba(201,168,76,0.1);">
         <div style="font-family:'Playfair Display',serif; color:var(--gold); font-size:0.95rem;">Control Panel</div>
@@ -15,12 +20,18 @@
     </a>
     <a href="{{ route('admin.guides.index') }}" class="sidebar-link {{ request()->routeIs('admin.guides*') ? 'active' : '' }}">
         <i class="bi bi-person-badge"></i> Guides
+        @if($pendingGuidesCount > 0)
+            <span class="badge bg-danger ms-auto rounded-pill" style="font-size: 0.7rem;">{{ $pendingGuidesCount }}</span>
+        @endif
     </a>
     <a href="{{ route('admin.events.index') }}" class="sidebar-link {{ request()->routeIs('admin.events*') ? 'active' : '' }}">
         <i class="bi bi-calendar-event"></i> Events
     </a>
     <a href="{{ route('admin.requests.index') }}" class="sidebar-link {{ request()->routeIs('admin.requests*') ? 'active' : '' }}">
         <i class="bi bi-envelope-check"></i> Guide Requests
+        @if($pendingRequestsCount > 0)
+            <span class="badge bg-danger ms-auto rounded-pill" style="font-size: 0.7rem;">{{ $pendingRequestsCount }}</span>
+        @endif
     </a>
 
     <div class="sidebar-section-label">Site</div>
