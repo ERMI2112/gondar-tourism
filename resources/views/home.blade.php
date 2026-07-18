@@ -294,7 +294,7 @@
         @if($attr->latitude && $attr->longitude)
             L.marker([{{ $attr->latitude }}, {{ $attr->longitude }}], {icon: goldIcon})
                 .addTo(map)
-                .bindPopup('<div style="font-family: \'Outfit\', sans-serif; padding: 4px; min-width: 160px;"><strong style="font-family: \'Playfair Display\', serif; font-size: 0.95rem; color: var(--gondar-red);">{{ $attr->name }}</strong><br><small style="color: #666;"><i class="bi bi-geo-alt me-1"></i>{{ $attr->location_name }}</small><br><a href="{{ route(\'attractions.show\', $attr) }}" style="color: var(--gondar-gold); font-size: 0.8rem; font-weight: 700; margin-top: 6px; display: inline-block; text-decoration: none;">View Site →</a></div>');
+                .bindPopup('<div style="font-family: \'Outfit\', sans-serif; padding: 4px; min-width: 160px;"><strong style="font-family: \'Playfair Display\', serif; font-size: 0.95rem; color: var(--gondar-red);">{{ $attr->name }}</strong><br><small style="color: #666;"><i class="bi bi-geo-alt me-1"></i>{{ $attr->location_name }}</small><br><a href="{{ route('attractions.show', $attr) }}" style="color: var(--gondar-gold); font-size: 0.8rem; font-weight: 700; margin-top: 6px; display: inline-block; text-decoration: none;">View Site →</a></div>');
         @endif
     @endforeach
 </script>
