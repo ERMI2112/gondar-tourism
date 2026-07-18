@@ -1,0 +1,538 @@
+/* Gondar Tourism Portal — Custom Premium Stylesheet */
+
+:root {
+    --gondar-red: #A21C26;
+    --gondar-red-hover: #80141B;
+    --gondar-gold: #D4AF37;
+    --gondar-gold-light: #F7E7B4;
+    --gondar-charcoal: #1C1C1E;
+    --gondar-dark: #121212;
+    --gondar-cream: #FDFBF7;
+    --gondar-cream-dark: #F5EFEB;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Outfit', sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--gondar-cream);
+    color: var(--gondar-charcoal);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* Navbar Restyling */
+.navbar-custom {
+    transition: var(--transition-smooth);
+    background: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 2px solid var(--gondar-gold);
+    z-index: 1050;
+}
+
+.navbar-custom .navbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar-custom .navbar-brand span {
+    color: var(--gondar-gold);
+}
+
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem !important;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: var(--gondar-gold) !important;
+}
+
+.navbar-custom .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--gondar-gold);
+    transition: var(--transition-smooth);
+    transform: translateX(-50%);
+}
+
+.navbar-custom .nav-link:hover::after,
+.navbar-custom .nav-link.active::after {
+    width: 80%;
+}
+
+/* Premium Buttons */
+.btn-gondar-red {
+    background-color: var(--gondar-red);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(162, 28, 38, 0.3);
+}
+
+.btn-gondar-red:hover {
+    background-color: var(--gondar-red-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(162, 28, 38, 0.4);
+}
+
+.btn-gondar-gold {
+    background-color: var(--gondar-gold);
+    color: var(--gondar-charcoal);
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gondar-gold:hover {
+    background-color: #c5a02b;
+    color: var(--gondar-charcoal);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-gondar-outline {
+    background-color: transparent;
+    color: var(--gondar-red);
+    border: 2px solid var(--gondar-red);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+}
+
+.btn-gondar-outline:hover {
+    background-color: var(--gondar-red);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-banner {
+    position: relative;
+    height: 75vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(18, 18, 18, 0.8) 0%, rgba(18, 18, 18, 0.4) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    color: #ffffff;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Gondar Premium Cards */
+.card-gondar {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-gondar:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.card-gondar-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-top: 66.67%; /* 3:2 Aspect Ratio */
+}
+
+.card-gondar-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.card-gondar:hover .card-gondar-img {
+    transform: scale(1.08);
+}
+
+.card-gondar-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(28, 28, 30, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: var(--gondar-gold);
+    border: 1px solid var(--gondar-gold);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.card-gondar-price {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: var(--gondar-red);
+    color: #ffffff;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.card-gondar-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-gondar-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--gondar-charcoal);
+}
+
+.card-gondar-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+/* Asymmetric Grid layouts (Visit Rwanda style) */
+.asymmetric-grid .col-md-8 .card-gondar-img-wrapper {
+    padding-top: 40%;
+}
+
+/* Glassmorphism containers */
+.glass-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Custom Guide Grid Profile Card (Showaround style) */
+.card-guide-portrait {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    background-color: var(--gondar-charcoal);
+    aspect-ratio: 3/4;
+    border: 2px solid transparent;
+}
+
+.card-guide-portrait:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--gondar-gold);
+}
+
+.card-guide-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: var(--transition-smooth);
+}
+
+.card-guide-portrait:hover .card-guide-portrait-img {
+    opacity: 0.95;
+    transform: scale(1.05);
+}
+
+.card-guide-portrait-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, rgba(28, 28, 30, 0.95) 0%, rgba(28, 28, 30, 0.5) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.card-guide-portrait-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.card-guide-portrait-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-guide-portrait-languages {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+}
+
+.card-guide-portrait-specialization {
+    font-size: 0.8rem;
+    color: var(--gondar-gold);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.card-guide-portrait-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.75rem;
+}
+
+.card-guide-portrait-price {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+/* Detail view Layouts */
+.detail-header-banner {
+    height: 45vh;
+    min-height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-bottom: 4px solid var(--gondar-gold);
+}
+
+.detail-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0.3) 100%);
+}
+
+.detail-header-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 3rem 0;
+    color: #ffffff;
+}
+
+/* Section Dividers & Headers */
+.section-tagline {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gondar-red);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--gondar-charcoal);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--gondar-gold);
+}
+
+.section-title-center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Leaflet Map Restyling */
+.leaflet-container-gondar {
+    height: 350px;
+    border-radius: 12px;
+    border: 3px solid var(--gondar-gold-light);
+    box-shadow: var(--shadow-soft);
+    z-index: 1;
+}
+
+/* Verification indicators */
+.verification-badge {
+    background-color: rgba(212, 175, 55, 0.15);
+    color: var(--gondar-gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--gondar-gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Sticky booking sidebar */
+.sticky-sidebar {
+    position: sticky;
+    top: 90px;
+    z-index: 100;
+}
+
+/* Cultural decorative border */
+.cultural-divider {
+    height: 6px;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--gondar-red),
+        var(--gondar-red) 10px,
+        var(--gondar-gold) 10px,
+        var(--gondar-gold) 20px,
+        var(--gondar-cream) 20px,
+        var(--gondar-cream) 30px
+    );
+    border: none;
+    margin: 4rem 0;
+    opacity: 0.8;
+}
+
+/* Reviews List Styles */
+.feedback-card {
+    background-color: #ffffff;
+    border-left: 4px solid var(--gondar-gold);
+    padding: 1.5rem;
+    border-radius: 0 12px 12px 0;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 1.5rem;
+}
+
+.feedback-stars {
+    color: var(--gondar-gold);
+    margin-bottom: 0.5rem;
+}
+
+/* Footer Styling */
+.footer-custom {
+    background-color: var(--gondar-charcoal);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4rem 0 2rem 0;
+    border-top: 4px solid var(--gondar-gold);
+    font-size: 0.9rem;
+}
+
+.footer-custom h5 {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.footer-custom a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-custom a:hover {
+    color: var(--gondar-gold);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+}

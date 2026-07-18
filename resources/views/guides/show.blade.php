@@ -3,67 +3,137 @@
 @section('title', ($guide->user->name ?? 'Guide Profile') . ' — Gondar Tourism')
 
 @section('content')
-<style>
-    .guide-profile-hero { background:radial-gradient(circle at 85% 20%, rgba(212,175,55,.17), transparent 25%), linear-gradient(135deg, #2b1720, #17171a 66%); padding:2.25rem 0 4.5rem; }
-    .guide-profile-avatar { width:120px; height:120px; display:grid; place-items:center; flex:0 0 120px; border:5px solid var(--gold-light); border-radius:50%; background:linear-gradient(145deg, var(--crimson), var(--imperial-red)); color:#fff; font:600 3rem 'Playfair Display',serif; box-shadow:0 12px 25px rgba(0,0,0,.25); }
-    .guide-profile-card { background:var(--warm-white); border-radius:16px; color:var(--charcoal); box-shadow:0 14px 34px rgba(0,0,0,.16); }
-    .guide-profile-card h2 { color:var(--charcoal); }
-    .detail-label { color:#88756a; font-size:.73rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-    .detail-value { color:#302c2b; font-size:.98rem; }
-</style>
 
-<section class="guide-profile-hero">
-    <div class="container">
-        <a href="{{ route('guides.index') }}" style="color:var(--gold-light); text-decoration:none; font-size:.9rem;"><i class="bi bi-arrow-left me-1"></i> Back to all guides</a>
-        <div class="d-flex flex-column flex-md-row align-items-md-center gap-4 mt-4">
-            <div class="guide-profile-avatar">{{ strtoupper(substr($guide->user->name ?? 'G', 0, 1)) }}</div>
-            <div>
-                <div class="section-label mb-2"><i class="bi bi-person-heart me-1"></i> Local guide</div>
-                <h1 class="section-title mb-2" style="font-size:clamp(2.4rem,5vw,3.8rem);">{{ $guide->user->name ?? 'Guide Profile' }}</h1>
-                <p class="mb-2" style="color:var(--warm-gray);">{{ $guide->specialization ?? 'Gondar experiences and local culture' }}</p>
-                <span class="{{ $guide->availability_status === 'available' ? 'badge-available' : 'badge-busy' }}"><i class="bi bi-circle-fill me-1" style="font-size:.48rem;"></i>{{ ucfirst($guide->availability_status ?? 'available') }}</span>
+{{-- PROFILE HERO BANNER --}}
+<section class="detail-header-banner" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ed/Fasilides_Bath_05.jpg');">
+    <div class="detail-header-overlay"></div>
+    <div class="detail-header-content">
+        <div class="container">
+            <a href="{{ route('guides.index') }}" class="text-warning text-decoration-none small d-inline-flex align-items-center gap-1 mb-3 opacity-75">
+                <i class="bi bi-arrow-left"></i> All Guides
+            </a>
+            <div class="d-flex align-items-center gap-3 mb-2">
+                <span class="verification-badge"><i class="bi bi-patch-check-fill"></i> Local Guide</span>
+                <span class="{{ $guide->availability_status === 'available' ? 'badge-available' : 'badge-busy' }}">
+                    <i class="bi bi-circle-fill me-1" style="font-size: 0.45rem;"></i>{{ ucfirst($guide->availability_status ?? 'available') }}
+                </span>
             </div>
+            <h1 class="display-5 fw-bold text-white font-serif">{{ $guide->user->name ?? 'Guide Profile' }}</h1>
+            <p class="text-white-50 small mb-0 mt-2">
+                <i class="bi bi-compass me-1 text-warning"></i>{{ $guide->specialization ?? 'Gondar Heritage & Hiking' }}
+            </p>
         </div>
     </div>
 </section>
 
-<main class="container" style="padding:3.5rem 0 5rem;">
-    <div class="row g-4 g-lg-5">
+{{-- MAIN CONTENT --}}
+<div class="container py-5">
+    <div class="row g-5">
+        
+        {{-- LEFT COLUMN: Bio & Details --}}
         <div class="col-lg-7">
-            <article class="guide-profile-card p-4 p-md-5 mb-4">
-                <div class="section-label mb-2" style="color:var(--imperial-red);">Get to know your guide</div>
-                <h2 class="mb-3">A more personal way to see Gondar</h2>
-                <p class="mb-0" style="color:#625c56; line-height:1.85;">{{ $guide->bio ?: 'This licensed local guide is ready to help you discover Gondar with useful context, flexible pacing, and genuine local insight.' }}</p>
-            </article>
-            <article class="guide-profile-card p-4 p-md-5">
-                <h2 class="h3 mb-4">Guide details</h2>
-                <div class="row g-4">
-                    <div class="col-sm-6"><div class="detail-label mb-1"><i class="bi bi-award me-1"></i> Specialization</div><div class="detail-value">{{ $guide->specialization ?? 'General tourism' }}</div></div>
-                    <div class="col-sm-6"><div class="detail-label mb-1"><i class="bi bi-translate me-1"></i> Languages</div><div class="detail-value">{{ $guide->languages ?? 'English' }}</div></div>
-                    @if($guide->price_range)<div class="col-sm-6"><div class="detail-label mb-1"><i class="bi bi-cash-coin me-1"></i> Typical rate</div><div class="detail-value">{{ $guide->price_range }}</div></div>@endif
-                    <div class="col-sm-6"><div class="detail-label mb-1"><i class="bi bi-patch-check me-1"></i> License</div><div class="detail-value">{{ $guide->license_number ?? 'Verified Gondar guide' }}</div></div>
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-header bg-white border-bottom py-3 px-4">
+                    <h5 class="font-serif mb-0"><i class="bi bi-info-circle text-warning me-2"></i>Get to Know Your Guide</h5>
                 </div>
-            </article>
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3">A Personal Way to See Gondar</h5>
+                    <p class="text-muted lh-lg mb-0">
+                        {{ $guide->bio ?: 'This licensed local guide is ready to help you discover Gondar with useful history context, flexible pacing, and genuine local insight.' }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-bottom py-3 px-4">
+                    <h5 class="font-serif mb-0"><i class="bi bi-award text-warning me-2"></i>Guide Credentials</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <span class="text-muted small text-uppercase fw-bold d-block mb-1" style="letter-spacing: 0.5px;"><i class="bi bi-shield-check text-warning me-1"></i> Specialization</span>
+                            <span class="text-dark fw-semibold">{{ $guide->specialization ?? 'General Tourism' }}</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="text-muted small text-uppercase fw-bold d-block mb-1" style="letter-spacing: 0.5px;"><i class="bi bi-translate text-warning me-1"></i> Languages</span>
+                            <span class="text-dark fw-semibold">{{ $guide->languages ?? 'English' }}</span>
+                        </div>
+                        @if($guide->price_range)
+                        <div class="col-sm-6">
+                            <span class="text-muted small text-uppercase fw-bold d-block mb-1" style="letter-spacing: 0.5px;"><i class="bi bi-cash-coin text-warning me-1"></i> Standard Rate</span>
+                            <span class="text-dark fw-semibold">{{ $guide->price_range }}</span>
+                        </div>
+                        @endif
+                        <div class="col-sm-6">
+                            <span class="text-muted small text-uppercase fw-bold d-block mb-1" style="letter-spacing: 0.5px;"><i class="bi bi-patch-check text-warning me-1"></i> License Number</span>
+                            <span class="text-dark fw-semibold">{{ $guide->license_number ?? 'Verified Gondar Guide' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <aside class="col-lg-5">
-            <div class="guide-profile-card p-4 p-md-5">
-                <div class="section-label mb-2" style="color:var(--imperial-red);">Plan together</div>
-                <h2 class="h3 mb-2">Send a booking request</h2>
-                <p style="color:#6d625c; font-size:.92rem;">Share your dates and plans. The guide will receive your request.</p>
-                @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
-                <form method="POST" action="{{ route('guide-requests.store') }}">
-                    @csrf
-                    <input type="hidden" name="guide_id" value="{{ $guide->id }}">
-                    <div class="mb-3"><label class="form-label">Your name</label><input type="text" name="tourist_name" class="form-control" value="{{ old('tourist_name') }}" required placeholder="Full name"></div>
-                    <div class="mb-3"><label class="form-label">Email address</label><input type="email" name="tourist_email" class="form-control" value="{{ old('tourist_email') }}" required placeholder="you@example.com"></div>
-                    <div class="mb-3"><label class="form-label">Phone number <span class="text-muted">(optional)</span></label><input type="text" name="tourist_phone" class="form-control" value="{{ old('tourist_phone') }}" placeholder="e.g. +251 911 000 000"></div>
-                    <div class="row"><div class="col-sm-6 mb-3"><label class="form-label">Visit date</label><input type="date" name="visit_date" class="form-control" value="{{ old('visit_date') }}" required></div><div class="col-sm-6 mb-3"><label class="form-label">Group size</label><input type="number" name="group_size" class="form-control" value="{{ old('group_size', 1) }}" min="1" required></div></div>
-                    <div class="mb-4"><label class="form-label">What would you like to explore?</label><textarea name="message" class="form-control" rows="4" placeholder="Tell the guide about your trip...">{{ old('message') }}</textarea></div>
-                    <button type="submit" class="btn-gold w-100 justify-content-center" style="border:0; cursor:pointer;"><i class="bi bi-send me-1"></i> Send booking request</button>
-                </form>
+        {{-- RIGHT COLUMN: Booking Request Form --}}
+        <div class="col-lg-5">
+            <div class="sticky-sidebar">
+                <div class="card border-0 shadow-sm rounded-3">
+                    <div class="card-header py-3 px-4" style="background-color: var(--gondar-red); border-radius: 12px 12px 0 0;">
+                        <h5 class="mb-0 text-white"><i class="bi bi-envelope me-2"></i>Send Booking Request</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-muted small lh-lg mb-4">
+                            Submit your planned dates and size of group. The guide will receive your details and respond as soon as possible.
+                        </p>
+                        
+                        @if(session('success'))
+                            <div class="alert alert-success border-0 d-flex align-items-center gap-2 mb-3" style="background: #E8F8F0; color: #229954;">
+                                <i class="bi bi-check-circle-fill"></i>{{ session('success') }}
+                            </div>
+                        @endif
+                        
+                        <form method="POST" action="{{ route('guide-requests.store') }}">
+                            @csrf
+                            <input type="hidden" name="guide_id" value="{{ $guide->id }}">
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small text-uppercase">Your Name</label>
+                                <input type="text" name="tourist_name" class="form-control" value="{{ old('tourist_name') }}" required placeholder="Full Name">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small text-uppercase">Email Address</label>
+                                <input type="email" name="tourist_email" class="form-control" value="{{ old('tourist_email') }}" required placeholder="you@example.com">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small text-uppercase">Phone (optional)</label>
+                                <input type="text" name="tourist_phone" class="form-control" value="{{ old('tourist_phone') }}" placeholder="e.g. +251 911 000 000">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label fw-semibold small text-uppercase">Visit Date</label>
+                                    <input type="date" name="visit_date" class="form-control" value="{{ old('visit_date') }}" required min="{{ date('Y-m-d') }}">
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label fw-semibold small text-uppercase">Group Size</label>
+                                    <input type="number" name="group_size" class="form-control" value="{{ old('group_size', 1) }}" min="1" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold small text-uppercase">Planned Itinerary</label>
+                                <textarea name="message" class="form-control" rows="4" placeholder="Tell the guide about your timeline or places you want to visit...">{{ old('message') }}</textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-gondar-gold w-100">
+                                <i class="bi bi-send me-2"></i>Send Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </aside>
+        </div>
     </div>
-</main>
+</div>
 @endsection
